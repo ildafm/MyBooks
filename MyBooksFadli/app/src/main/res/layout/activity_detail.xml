@@ -28,6 +28,14 @@
         />
 
     <TextView
+        android:id="@+id/tv_isbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ISBN"
+        android:textSize="20sp"
+        />
+
+    <TextView
         android:id="@+id/tv_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

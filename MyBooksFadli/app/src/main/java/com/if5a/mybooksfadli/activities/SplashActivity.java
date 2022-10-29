@@ -118,8 +118,6 @@ public class SplashActivity extends AppCompatActivity {
     //menarik data dari data raw dan diletakan kedalam array
     public ArrayList<Buku> preLoadBooks(){
         ArrayList<Buku> bukus = new ArrayList<>();
-        ArrayList<Integer> i = new ArrayList<>();
-        ArrayList<String> lines = new ArrayList<>();
         String line = null;
         BufferedReader reader;
 
@@ -131,30 +129,19 @@ public class SplashActivity extends AppCompatActivity {
 
             do {
                 line = reader.readLine();
-                String[] splitted = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-
-                try{
-                    Buku buku = new Buku();
-                    buku.setIsbn(splitted[0]);
-                    buku.setTitle(splitted[1]);
-                    buku.setAuthor(splitted[2]);
-                    buku.setYearOfPublication(splitted[3]);
-                    buku.setPublisher(splitted[4]);
-                    buku.setImage_url_s(splitted[5]);
-                    buku.setImage_url_m(splitted[6]);
-                    buku.setImage_url_l(splitted[7]);
-
-                    bukus.add(buku);
-                }catch (NumberFormatException e){
-                    lines.add(line);
-                }
+                String[] splitstr = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                Buku buku;
+                buku = new Buku(
+                        splitstr[0], splitstr[1], splitstr[2],
+                        splitstr[3], splitstr[4], splitstr[5],
+                        splitstr[6], splitstr[7]
+                );
+                bukus.add(buku);
 
             } while (line != null);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Log.d("errors", "preloadRawBooks: " + i + "\n" + lines);
 
         return bukus;
     }

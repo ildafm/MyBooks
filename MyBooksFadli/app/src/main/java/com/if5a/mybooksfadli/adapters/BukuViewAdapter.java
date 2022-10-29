@@ -43,10 +43,8 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
         int pos = holder.getAdapterPosition();
         Buku buku = data.get(position);
 
-        Glide
-                .with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
                 .load(buku.getImage_url_m())
-                .placeholder(R.drawable.ic_book_24)
                 .into(holder.ivImageItem);
 
         holder.tvTitle.setText(buku.getTitle());

@@ -22,13 +22,12 @@ public class DetailActivity extends AppCompatActivity {
 
         Buku buku = getIntent().getParcelableExtra("EXTRA_BUKU");
 
-        Glide
-                .with(DetailActivity.this)
+        Glide.with(DetailActivity.this)
                 .load(buku.getImage_url_l())
-                .placeholder(R.drawable.ic_book_24)
                 .into(binding.ivImage);
 
         binding.tvTitle.setText(buku.getTitle());
+        binding.tvIsbn.setText("ISBN : " + buku.getIsbn());
         binding.tvAuthor.setText("Author : " + buku.getAuthor());
         binding.tvYearOfPublication.setText("Year of Publication : " + buku.getYearOfPublication());
         binding.tvPublisher.setText("Publisher : " + buku.getPublisher());
