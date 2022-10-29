@@ -75,6 +75,42 @@ public class BukuHelper {
         return arrayList;
     }
 
+    public ArrayList<Buku> getAllDataBooksByTitle(String title){
+        Cursor cursor = database.query(TABLE_BOOKS,
+                null,
+                TITLE + " LIKE ?",
+                new String[]{"%" + title + "%"},
+                null,
+                null,
+                _ID + " ASC",
+                null
+        );
+
+        cursor.moveToFirst();
+        ArrayList<Buku> arrayList = new ArrayList<>();
+        Buku buku;
+
+        if(cursor.getCount() > 0){
+            do{
+                buku = new Buku();
+                buku.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                buku.setIsbn(cursor.getString(cursor.getColumnIndexOrThrow(ISBN)));
+                buku.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+                buku.setAuthor(cursor.getString(cursor.getColumnIndexOrThrow(AUTHOR)));
+                buku.setYearOfPublication(cursor.getString(cursor.getColumnIndexOrThrow(YEAROFPUBLICATION)));
+                buku.setPublisher(cursor.getString(cursor.getColumnIndexOrThrow(PUBLISHER)));
+                buku.setImage_url_s(cursor.getString(cursor.getColumnIndexOrThrow(IMAGEURLS)));
+                buku.setImage_url_m(cursor.getString(cursor.getColumnIndexOrThrow(IMAGEURLM)));
+                buku.setImage_url_l(cursor.getString(cursor.getColumnIndexOrThrow(IMAGEURLL)));
+
+                arrayList.add(buku);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return arrayList;
+    }
+
     public long insertDataBooks(Buku buku){
         ContentValues cv = new ContentValues();
         cv.put(ISBN, buku.getIsbn());
