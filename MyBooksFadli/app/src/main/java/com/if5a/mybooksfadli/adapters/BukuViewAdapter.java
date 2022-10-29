@@ -15,7 +15,7 @@ import com.if5a.mybooksfadli.utilities.ItemClickListener;
 
 import java.util.ArrayList;
 
-public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.viewHolder> {
+public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHolder> {
     private ArrayList<Buku> data = new ArrayList<>();
     private Context context;
     private ItemClickListener<Buku> itemClickListener;
@@ -31,17 +31,18 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.viewHo
 
     @NonNull
     @Override
-    public BukuViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BukuViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_books, parent, false);
-        return new viewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BukuViewAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BukuViewAdapter.ViewHolder holder, int position) {
         int pos = holder.getAdapterPosition();
         Buku buku = data.get(position);
         holder.tvTitle.setText(buku.getTitle());
-        holder.tvAuthor.setText(buku.getAuthor());
+        holder.tvAuthor.setText("Author : " + buku.getAuthor());
+        holder.tvYearOfPublication.setText("Year of publication : " + buku.getYearOfPublication());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,14 +56,15 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.viewHo
         return data.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder {
-        private TextView tvTitle, tvAuthor;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvTitle, tvAuthor, tvYearOfPublication;
 
-        public viewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvAuthor = itemView.findViewById(R.id.tv_author);
+            tvYearOfPublication = itemView.findViewById(R.id.tv_year_of_publication);
         }
     }
 }

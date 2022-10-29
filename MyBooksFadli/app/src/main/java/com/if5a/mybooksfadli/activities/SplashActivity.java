@@ -76,7 +76,7 @@ public class SplashActivity extends AppCompatActivity {
                     bukuHelper.setTransactionSuccess();
                 } catch (Exception e) {
 //                    e.printStackTrace();
-                    Log.e(TAG, "doInBachground: Exception " + e.getMessage());
+                    Log.e(TAG, "doInBackground: Exception " + e.getMessage());
                 }
                 bukuHelper.endTransaction();
 
@@ -117,59 +117,37 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     //menarik data dari data raw dan diletakan kedalam array
-//    public ArrayList<Buku> preLoadBooks(){
-//        ArrayList<Buku> bukus = new ArrayList<>();
-//        String line = null;
-//        BufferedReader reader;
-//
-//        //jika terdapat null akan force close jika tidak menggunakan try catch
-//        try {
-//            Resources res = getResources();
-//            InputStream raw_book = res.openRawResource(R.raw.books);
-//
-//            reader = new BufferedReader(new InputStreamReader(raw_book));
-//            int count = 0;
-//            do{
-//                line = reader.readLine();
-//                String[] splitstr = line.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)\"", -1);
-//
-//                Buku buku;
-//                buku = new Buku(splitstr[0], splitstr[1], splitstr[2], splitstr[3], splitstr[4], splitstr[5], splitstr[6], splitstr[7]);
-//                bukus.add(buku);
-//            }while (line != null);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return bukus;
-//    }
-
     public ArrayList<Buku> preLoadBooks(){
         ArrayList<Buku> bukus = new ArrayList<>();
         ArrayList<Integer> i = new ArrayList<>();
         ArrayList<String> lines = new ArrayList<>();
+        String line = null;
+        BufferedReader reader;
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(
-                            getResources().openRawResource(R.raw.books)
-                    )
-            );
+            Resources res = getResources();
+            InputStream raw_book = res.openRawResource(R.raw.books);
+//            BufferedReader bufferedReader = new BufferedReader(
+//                    new InputStreamReader(
+//                            getResources().openRawResource(R.raw.books)
+//                    )
+//            );
 
-            bufferedReader.readLine(); // skip line 1
+            reader = new BufferedReader(new InputStreamReader(raw_book));
 
-            String line = null;
-
+            // digunakan untuk melewati bari pertama yng merupakan table head
+//            bufferedReader.readLine();
             int count = 1;
 
             do {
-                line = bufferedReader.readLine();
+                line = reader.readLine();
                 String[] splitted = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                 try{
                     Buku buku = new Buku();
                     buku.setIsbn(splitted[0]);
                     buku.setTitle(splitted[1]);
-                    buku.setYearOfPublication(splitted[2]);
+                    buku.setAuthor(splitted[2]);
                     buku.setYearOfPublication(splitted[3]);
                     buku.setPublisher(splitted[4]);
                     buku.setImage_url_s(splitted[5]);

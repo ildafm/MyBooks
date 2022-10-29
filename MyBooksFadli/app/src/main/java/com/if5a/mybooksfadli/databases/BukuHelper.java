@@ -46,7 +46,7 @@ public class BukuHelper {
                 null,
                 null,
                 null,
-                _ID + " ASC",
+                TITLE + " ASC",
                 null
                 );
 
@@ -82,7 +82,7 @@ public class BukuHelper {
                 new String[]{"%" + title + "%"},
                 null,
                 null,
-                _ID + " ASC",
+                TITLE + " ASC",
                 null
         );
 
@@ -126,12 +126,15 @@ public class BukuHelper {
 
     public void beginTransaction(){database.beginTransaction();}
 
-    public void setTransactionSuccess(){database.setTransactionSuccessful();}
+    public void setTransactionSuccess(){
+        database.setTransactionSuccessful();
+    }
 
     public void endTransaction(){database.endTransaction();}
 
     public void insertTransactionDataBooks(Buku buku){
-        String sql = "INSERT INTO " + TABLE_BOOKS + " ("
+        String sql = "INSERT INTO "
+                + TABLE_BOOKS + " ("
                 + ISBN + ", "
                 + TITLE + ", "
                 + AUTHOR + ", "
