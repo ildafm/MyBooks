@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.if5a.mybooksfadli.R;
 import com.if5a.mybooksfadli.databinding.ActivityDetailBinding;
 import com.if5a.mybooksfadli.models.Buku;
@@ -20,6 +21,12 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Buku buku = getIntent().getParcelableExtra("EXTRA_BUKU");
+
+        Glide
+                .with(DetailActivity.this)
+                .load(buku.getImage_url_l())
+                .placeholder(R.drawable.ic_book_24)
+                .into(binding.ivImage);
 
         binding.tvTitle.setText(buku.getTitle());
         binding.tvAuthor.setText("Author : " + buku.getAuthor());

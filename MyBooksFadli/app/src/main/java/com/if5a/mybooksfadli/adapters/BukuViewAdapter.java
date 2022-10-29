@@ -43,10 +43,11 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
         int pos = holder.getAdapterPosition();
         Buku buku = data.get(position);
 
-        Glide.with(holder.itemView.getContext())
+        Glide
+                .with(holder.itemView.getContext())
                 .load(buku.getImage_url_m())
                 .placeholder(R.drawable.ic_book_24)
-                .into(holder.ivImage);
+                .into(holder.ivImageItem);
 
         holder.tvTitle.setText(buku.getTitle());
         holder.tvAuthor.setText("Author : " + buku.getAuthor());
@@ -67,7 +68,7 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle, tvAuthor, tvYearOfPublication;
-        private ImageView ivImage;
+        private ImageView ivImageItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,7 +76,7 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvAuthor = itemView.findViewById(R.id.tv_author);
             tvYearOfPublication = itemView.findViewById(R.id.tv_year_of_publication);
-            ivImage = itemView.findViewById(R.id.iv_image_item);
+            ivImageItem = itemView.findViewById(R.id.iv_image_item);
         }
     }
 }

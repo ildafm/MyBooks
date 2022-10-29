@@ -75,7 +75,6 @@ public class SplashActivity extends AppCompatActivity {
                     }
                     bukuHelper.setTransactionSuccess();
                 } catch (Exception e) {
-//                    e.printStackTrace();
                     Log.e(TAG, "doInBackground: Exception " + e.getMessage());
                 }
                 bukuHelper.endTransaction();
@@ -127,17 +126,8 @@ public class SplashActivity extends AppCompatActivity {
         try {
             Resources res = getResources();
             InputStream raw_book = res.openRawResource(R.raw.books);
-//            BufferedReader bufferedReader = new BufferedReader(
-//                    new InputStreamReader(
-//                            getResources().openRawResource(R.raw.books)
-//                    )
-//            );
 
             reader = new BufferedReader(new InputStreamReader(raw_book));
-
-            // digunakan untuk melewati bari pertama yng merupakan table head
-//            bufferedReader.readLine();
-            int count = 1;
 
             do {
                 line = reader.readLine();
@@ -156,11 +146,9 @@ public class SplashActivity extends AppCompatActivity {
 
                     bukus.add(buku);
                 }catch (NumberFormatException e){
-                    i.add(count);
                     lines.add(line);
                 }
 
-                count++;
             } while (line != null);
         } catch (Exception e) {
             e.printStackTrace();

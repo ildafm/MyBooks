@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ISBN + " TEXT NOT NULL, "
             + TITLE + " TEXT NOT NULL, "
-            + AUTHOR + " TEXT, "
+            + AUTHOR + " TEXT NOT NULL, "
             + YEAROFPUBLICATION + " TEXT NOT NULL, "
             + PUBLISHER + " TEXT NOT NULL, "
             + IMAGEURLS + " TEXT NOT NULL, "
