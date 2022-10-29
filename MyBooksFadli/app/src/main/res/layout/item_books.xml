@@ -28,6 +28,8 @@
                 android:text="Title"
                 android:textStyle="bold"
                 android:textSize="18sp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 />
 
             <TextView
@@ -36,9 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title"
                 android:paddingHorizontal="16dp"
-                android:paddingTop="4dp"
-                android:maxLines="2"
-                android:ellipsize="end"
+                android:paddingTop="5dp"
                 android:text="author"
                 style="subtitle"
                 />

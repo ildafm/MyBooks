@@ -46,7 +46,7 @@ public class BukuHelper {
                 null,
                 null,
                 null,
-                TITLE + " ASC",
+                _ID + " ASC",
                 null
                 );
 
@@ -82,7 +82,7 @@ public class BukuHelper {
                 new String[]{"%" + title + "%"},
                 null,
                 null,
-                TITLE + " ASC",
+                _ID + " ASC",
                 null
         );
 
