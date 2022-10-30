@@ -1,21 +1,27 @@
 package com.if5a.mybooksfadli.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.if5a.mybooksfadli.R;
+import com.if5a.mybooksfadli.adapters.BukuViewAdapter;
+import com.if5a.mybooksfadli.databases.BukuHelper;
 import com.if5a.mybooksfadli.databinding.ActivityMainBinding;
+import com.if5a.mybooksfadli.models.Buku;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private BukuViewAdapter bukuViewAdapter;
+    private BukuHelper bukuHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +30,47 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        bukuHelper = new BukuHelper(MainActivity.this);
+        bukuViewAdapter = new BukuViewAdapter(this::onItemBukuClick);
+        binding.rvBuku.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        binding.rvBuku.setAdapter(bukuViewAdapter);
+
+        getAllData();
+
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strSearch = binding.etSearch.getText().toString();
+
+                if (TextUtils.isEmpty(strSearch)){
+                    getAllData();
+                } else{
+                    bukuHelper.open();
+                    ArrayList<Buku> bukus = bukuHelper.getAllDataBooksByTitle(strSearch);
+                    bukuHelper.close();
+                    bukuViewAdapter.setData(bukus);
+                }
+                hideKeyboard(MainActivity.this);
+            }
+        });
+    }
+
+    private void onItemBukuClick(Buku buku, int i){
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra("EXTRA_BUKU", buku);
+        startActivity(intent);
+    }
+
+    private void getAllData(){
+        bukuHelper.open();
+        ArrayList<Buku> bukus = bukuHelper.getAllDataBooks();
+        bukuHelper.close();
+        bukuViewAdapter.setData(bukus);
+    }
+
+    private void hideKeyboard(Context context){
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
 }

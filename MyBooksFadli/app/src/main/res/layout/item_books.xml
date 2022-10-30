@@ -28,21 +28,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
+                android:layout_marginBottom="6dp"
                 android:text="Title"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                />
-
-            <TextView
-                android:id="@+id/tv_isbn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="5dp"
-                android:text="isbn"
-                style="subtitle"
                 android:maxLines="1"
                 android:ellipsize="end"
                 />
@@ -66,13 +55,6 @@
                 android:text="Year of publication"
                 />
 
-            <TextView
-                android:id="@+id/tv_publisher"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:text="Publisher"
-                />
         </LinearLayout>
     </LinearLayout>
 

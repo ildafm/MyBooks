@@ -49,9 +49,7 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
                 .into(holder.ivImageItem);
 
         holder.tvTitle.setText(buku.getTitle());
-        holder.tvISBN.setText("ISBN : " + buku.getIsbn());
         holder.tvAuthor.setText("Author : " + buku.getAuthor());
-        holder.tvPublisher.setText("Publisher : " + buku.getPublisher());
         holder.tvYearOfPublication.setText("Publication : " + buku.getYearOfPublication());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +66,7 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvTitle, tvAuthor, tvYearOfPublication, tvISBN, tvPublisher;
+        private TextView tvTitle, tvAuthor, tvYearOfPublication;
         private ImageView ivImageItem;
 
         public ViewHolder(@NonNull View itemView) {
@@ -76,8 +74,6 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
 
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvAuthor = itemView.findViewById(R.id.tv_author);
-            tvISBN = itemView.findViewById(R.id.tv_isbn);
-            tvPublisher = itemView.findViewById(R.id.tv_publisher);
             tvYearOfPublication = itemView.findViewById(R.id.tv_year_of_publication);
             ivImageItem = itemView.findViewById(R.id.iv_image_item);
         }

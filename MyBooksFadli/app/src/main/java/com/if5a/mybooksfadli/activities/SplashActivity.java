@@ -1,7 +1,6 @@
 package com.if5a.mybooksfadli.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,10 +15,8 @@ import com.if5a.mybooksfadli.models.Buku;
 import com.if5a.mybooksfadli.utilities.AppPreference;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SplashActivity extends AppCompatActivity {
@@ -102,11 +99,10 @@ public class SplashActivity extends AppCompatActivity {
         //update progress terjadi disini
         protected void onProgressUpdate(Integer... values){ // ... berarti array
             binding.progressBar.setProgress(values[0]);
-            binding.tvLoading.setText("App Loading " + values[0] + "% ...");
+            binding.tvLoading.setText("App Loading " + values[0] + "%");
         }
 
         //ketika sudah selesai semua, dan kita harus intent
-
         @Override
         protected void onPostExecute(Void unused) {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);

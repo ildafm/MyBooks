@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_icon"
         android:layout_centerHorizontal="true"
-        android:text="App Loading...."
+        android:text="App Loading 0%"
         android:layout_marginBottom="16dp"
         android:textSize="24sp"
         />
