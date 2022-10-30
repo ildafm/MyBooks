@@ -91,8 +91,8 @@ public class SplashActivity extends AppCompatActivity {
                         this.wait(1000);
                         publishProgress((int) maxprogress);
                     }
-                } catch (InterruptedException e) {
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
             return null;
