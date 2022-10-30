@@ -6,15 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".activities.SplashActivity">
 
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_book_24"
+        />
+
     <ProgressBar
         android:id="@+id/progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tv_loading"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="128dp"
         />
 
 
@@ -22,9 +30,10 @@
         android:id="@+id/tv_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progress_bar"
+        android:layout_below="@+id/iv_icon"
         android:layout_centerHorizontal="true"
-        android:text="Loading...."
+        android:text="App Loading...."
         android:layout_marginBottom="16dp"
+        android:textSize="24sp"
         />
 </RelativeLayout>

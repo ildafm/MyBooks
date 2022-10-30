@@ -44,12 +44,15 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
         Buku buku = data.get(position);
 
         Glide.with(holder.itemView.getContext())
-                .load(buku.getImage_url_m())
+                .load(buku.getImage_url_s())
+                .placeholder(R.drawable.ic_book_24)
                 .into(holder.ivImageItem);
 
         holder.tvTitle.setText(buku.getTitle());
+        holder.tvISBN.setText("ISBN : " + buku.getIsbn());
         holder.tvAuthor.setText("Author : " + buku.getAuthor());
-        holder.tvYearOfPublication.setText("Year of publication : " + buku.getYearOfPublication());
+        holder.tvPublisher.setText("Publisher : " + buku.getPublisher());
+        holder.tvYearOfPublication.setText("Publication : " + buku.getYearOfPublication());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +68,7 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvTitle, tvAuthor, tvYearOfPublication;
+        private TextView tvTitle, tvAuthor, tvYearOfPublication, tvISBN, tvPublisher;
         private ImageView ivImageItem;
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,6 +76,8 @@ public class BukuViewAdapter extends RecyclerView.Adapter<BukuViewAdapter.ViewHo
 
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvAuthor = itemView.findViewById(R.id.tv_author);
+            tvISBN = itemView.findViewById(R.id.tv_isbn);
+            tvPublisher = itemView.findViewById(R.id.tv_publisher);
             tvYearOfPublication = itemView.findViewById(R.id.tv_year_of_publication);
             ivImageItem = itemView.findViewById(R.id.iv_image_item);
         }

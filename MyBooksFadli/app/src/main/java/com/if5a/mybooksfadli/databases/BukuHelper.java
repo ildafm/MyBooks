@@ -46,8 +46,8 @@ public class BukuHelper {
                 null,
                 null,
                 null,
-                _ID + " ASC",
-                null
+                TITLE + " ASC",
+                "3000"
                 );
 
         cursor.moveToFirst();
@@ -82,8 +82,8 @@ public class BukuHelper {
                 new String[]{"%" + title + "%"},
                 null,
                 null,
-                _ID + " ASC",
-                null
+                TITLE + " ASC",
+                "500"
         );
 
         cursor.moveToFirst();

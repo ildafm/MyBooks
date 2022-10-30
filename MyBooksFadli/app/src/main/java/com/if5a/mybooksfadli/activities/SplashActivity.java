@@ -86,10 +86,10 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     synchronized (this){
                         this.wait(1000);
-                        publishProgress(50);
-
-                        this.wait(1000);
-                        publishProgress((int) maxprogress);
+                        for (int i = 60; i > 0; i--){
+                            publishProgress(((int) maxprogress)/i);
+                            this.wait(50);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -102,7 +102,7 @@ public class SplashActivity extends AppCompatActivity {
         //update progress terjadi disini
         protected void onProgressUpdate(Integer... values){ // ... berarti array
             binding.progressBar.setProgress(values[0]);
-            binding.tvLoading.setText("Loading " + values[0] + "% ...");
+            binding.tvLoading.setText("App Loading " + values[0] + "% ...");
         }
 
         //ketika sudah selesai semua, dan kita harus intent

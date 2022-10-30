@@ -20,17 +20,17 @@
             android:id="@+id/et_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.75"
-            android:hint="Cari Melalui Judul"
+            android:layout_weight="0.65"
+            android:hint="Search by Title"
             />
 
         <Button
             android:id="@+id/btn_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+            android:layout_weight="0.35"
             android:backgroundTint="@color/purple_500"
-            android:text="Cari"
+            android:text="Search"
             android:textColor="@color/white"
             />
 

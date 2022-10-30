@@ -24,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Glide.with(DetailActivity.this)
                 .load(buku.getImage_url_l())
+                .placeholder(R.drawable.ic_book_24)
                 .into(binding.ivImage);
 
         binding.tvTitle.setText(buku.getTitle());
