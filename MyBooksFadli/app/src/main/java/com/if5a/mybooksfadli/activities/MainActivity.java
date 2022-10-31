@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private void getAllData(){
         bukuHelper.open();
         ArrayList<Buku> bukus = bukuHelper.getAllDataBooks();
-        bukuHelper.close();
+        bukuHelper.close();//ini digunakan untuk menutup database di app Inspection
         bukuViewAdapter.setData(bukus);
     }
 
